@@ -1,9 +1,4 @@
-/**
- * Created by Kornel on 2015-04-26.
- */
-
 import java.io.*;
-import java.util.Scanner;
 
 public class Zad4JavaIO {
 
