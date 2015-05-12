@@ -13,12 +13,11 @@ public class Zad4 {
 
         long start, stop;
         Random rand = new Random();
-        char[] tab = new char[10000];
+        char[] tab = new char[100000];
 
-        for(int i=0; i<10000; i++) {
+        for(int i=0; i<100000; i++) {
             tab[i] = (char) (rand.nextInt(26) + 'a');
         }
-
         String s = new String(tab);
 
         start = System.currentTimeMillis();
@@ -31,30 +30,22 @@ public class Zad4 {
             Zad4JavaIO.zapis(s);
             stop = System.currentTimeMillis();
             System.out.println("Czas wykonania (w milisekundach): " + (stop - start) + "\n");
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-
-        try {
 
             start = System.currentTimeMillis();
             Zad4JavaIO.odczyt();
             stop = System.currentTimeMillis();
             System.out.println("Czas wykonania (w milisekundach): "+(stop-start));
 
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        try {
-
             start = System.currentTimeMillis();
             Zad4JavaNIO.odczyt();
             stop = System.currentTimeMillis();
             System.out.println("Czas wykonania (w milisekundach): "+(stop-start));
 
-        } catch (IOException e) {
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        catch (IOException e){
             e.printStackTrace();
         }
     }
-
 }

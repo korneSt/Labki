@@ -21,9 +21,9 @@ public class Zad4JavaIO {
 
         System.out.println("---Zapis z pakietu java.io---");
 
-        try (PrintWriter writer
-                     = new PrintWriter(new BufferedWriter(new FileWriter("test.txt")))) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("test.txt"))){
             writer.write(s, 0, s.length());
+            writer.close();
         } catch (IOException x) {
             System.err.format("IOException: %s%n", x);
         }
