@@ -1,5 +1,6 @@
 package Zad6;
 
+import java.net.PortUnreachableException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,46 +9,31 @@ import java.util.List;
  */
 public class Pietro extends Lokalizacja {
 
-    Identyfikator i = new Identyfikator();
-    Integer nrPietra=0;
 
     private String opis;
     private String nazwa;
     List<Pokoj> pokoje = new ArrayList<>();
 
-    Pietro(String opis){
-        this.opis = opis;
-        nrPietra++;
-        i.setNrPietro(nrPietra);
-        //nrPietra = i.nrPietro;
+
+    public Pietro(int a, int b) {
+        this.id.setNrBudynek(a);
+        this.id.setNrPietro(b);
+        this.id.setNrPokoj(0);
     }
 
-    String getOpis() {
-        return opis + nrPietra;
-    }
 
-    Pietro(){}
+    void addPokoj(int a) {
+        pokoje.add(new Pokoj(this.id.getNrBudynek(), this.id.getNrPietro(), a));
+    }
 
     public void opis() {
-        System.out.println(getOpis());
-        for(Pokoj pok : pokoje) {
-            pok.opis();
-        }
-
-    }
-    void setPietro(String nazwa) {
-        this.nazwa = nazwa;
+        System.out.print("\tPietro: "+this.id.getNrPietro()+" \n");
+        for(Pokoj x : pokoje)
+            x.opis();
     }
 
-
-    void addPokojToList(Object o){
-    pokoje.add((Pokoj) o);
-    }
-
-    void opisPietro() {
-        for(Pokoj pok : pokoje) {
-            pok.opis();
-        }
+    public Pokoj pok(int a) {
+        return this.pokoje.get(a);
     }
 
 

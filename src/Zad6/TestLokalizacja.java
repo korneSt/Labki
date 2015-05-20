@@ -6,22 +6,27 @@ package Zad6;
 public class TestLokalizacja {
     public static void main(String[] args) {
 
-        Budynek b1 = new Budynek("moj dom");
-        Budynek b2 = new Budynek("wiezowiec");
+        Budynek budynek1 = new Budynek(1);
+        budynek1.addPietro(1);
+        budynek1.addPietro(3);
+        budynek1.pie(0).addPokoj(3);
+        budynek1.pie(0).addPokoj(5);
 
-        b1.addPietro("pierwsze");
-        b1.addPietro("drugie");
-        b1.opis();
+        //budynek1.getPietro().
 
-        b2.addPietro("parter");
-        b2.addPietro("poddasze");
-        b2.addPietro("3");
-        b1.addsPokoj("parter");
-        b2.addsPokoj("parter");
-        b2.addsPokoj("parter");
-        b2.addsPokoj("poddasze");
-        //b2.opis();
+        budynek1.opis();
+        Budynek budynek2 = new Budynek(2);
+        budynek2.addPietro(1);
+        budynek2.addPietro(3);
+        budynek2.pie(0).addPokoj(3);
+        budynek2.pie(0).addPokoj(5);
 
-        b2.pokojeNaPietrze("parter");
+        budynek2.opis();
+        try {
+            System.out.println(budynek1.pie(1).id.compareTo(budynek2.pie(3).id));
+        } catch (IndexOutOfBoundsException e) {
+            //e.printStackTrace();
+            System.out.print("\nBrak takiego numeru\n");
+        }
     }
 }

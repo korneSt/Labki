@@ -8,54 +8,33 @@ import java.util.List;
  */
 public class Budynek extends Lokalizacja {
 
-    Identyfikator i = new Identyfikator();
-
     private String nazwa;
-    int ilePietro=0;
-    List <Pietro> pietra = new ArrayList<>();
-    Pietro p;
-    Pokoj pok;
-    Budynek() {}
+    private List <Pietro> pietra = new ArrayList<>();
 
-    Budynek(String nazwa) {
-        this.nazwa = nazwa;
+    Budynek(int b) {
+        this.id.setNrBudynek(b);
+        this.id.setNrPietro(0);
+        this.id.setNrPokoj(0);
     }
 
     public void opis() {
-        System.out.println("Nazwa budynku: " + nazwa);
-        System.out.println("Pietra w budynku: ");
-        for(Pietro p : pietra) {
-           p.opis();
-        }
-    }
-    void setBudynek(String nazwa) {
-        this.nazwa = nazwa;
+        System.out.print("\nBudynek: " + this.id.getNrBudynek() + " \n");
+        for(Pietro x : pietra)
+            x.opis();
     }
 
-    void setID() {
-
+    public Pietro pie(int a) {
+        return this.pietra.get(a);
     }
+
+
     public List<Pietro> getPietro() {
         return pietra;
     }
 
 
-    void addPietro(String nazwa) {
-        p = new Pietro(nazwa);
+    void addPietro(int nr) {
+        Pietro p = new Pietro(this.id.getNrBudynek(), nr);
         pietra.add(p);
     }
-
-    void addsPokoj(String pietro) {
-        pok = new Pokoj();
-        for(Pietro p : pietra) {
-            if(p.getOpis().equals(pietro)) p.addPokojToList(pok);
-        }
-    }
-
-    void pokojeNaPietrze(String pietro) {
-        for(Pietro p : pietra) {
-            if(p.getOpis().equals(pietro)) p.opisPietro();
-        }
-    }
-
 }

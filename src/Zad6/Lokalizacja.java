@@ -14,4 +14,5 @@ package Zad6;
 public abstract class Lokalizacja {
 
     public abstract void opis();
+    Identyfikator id = new Identyfikator();
 }

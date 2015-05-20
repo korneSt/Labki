@@ -9,9 +9,11 @@ import java.util.List;
 public class Pokoj extends Lokalizacja {
 
     private String nazwa;
-    private int nrPok=0;
-    Pokoj () {
-        this.nrPok++;
+
+    Pokoj(int a, int b, int c) {
+        this.id.setNrBudynek(a);
+        this.id.setNrPietro(b);
+        this.id.setNrPokoj(c);
     }
 
     Pokoj(String nazwa) {
@@ -19,8 +21,7 @@ public class Pokoj extends Lokalizacja {
     }
 
     public void opis() {
-        System.out.println(nrPok + " " + nazwa);
-
+        System.out.print("\t\tPokoj: "+this.id.getNrPokoj()+" \n");
     }
     void setPokoj(String nazwa) {
         this.nazwa = nazwa;
