@@ -11,6 +11,8 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Kornel on 2015-05-07.
@@ -19,11 +21,23 @@ public class MainApp extends Application{
 
     private Stage primaryStage;
     private BorderPane rootLayout;
-    private ObservableList<Budynek> buildingData = FXCollections.observableArrayList();
+    List<Budynek> buildingDataList = new ArrayList<>();
+     ObservableList<Budynek> buildingData = FXCollections.observableArrayList(buildingDataList);
+
+    public MainApp() {
+       buildingData.add(new Budynek(1));
+        //buildingData.add(new Budynek(2));
+    }
 
     public static void main(String[] args) {
         launch(args);
 
+    }
+
+
+    //zwraca dane z listy osob
+    public ObservableList<Budynek> getBuildData() {
+        return buildingData;
     }
 
     void startTest() {
@@ -53,6 +67,7 @@ public class MainApp extends Application{
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        buildingDataList.add(new Budynek(1));
         this.primaryStage = primaryStage;
         this.primaryStage.setTitle("Osiedle");
 
