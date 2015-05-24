@@ -32,6 +32,14 @@ public class Pietro extends Lokalizacja {
             x.opis();
     }
 
+    public String opisString() {
+        String opisPokoj="";
+       // System.out.print("\tPietro: "+this.id.getNrPietro()+" \n");
+        for(Pokoj x : pokoje)
+            opisPokoj+=x.opisString()+" ";
+        return "\tPietro: "+this.id.getNrPietro()+" \n" + opisPokoj;
+    }
+
     public Pokoj pok(int a) {
         return this.pokoje.get(a);
     }

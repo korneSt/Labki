@@ -23,6 +23,10 @@ public class Pokoj extends Lokalizacja {
     public void opis() {
         System.out.print("\t\tPokoj: "+this.id.getNrPokoj()+" \n");
     }
+
+    public String opisString() {
+        return "\t\tPokoj: "+this.id.getNrPokoj()+" \n";
+    }
     void setPokoj(String nazwa) {
         this.nazwa = nazwa;
     }

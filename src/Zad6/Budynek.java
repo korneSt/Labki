@@ -1,5 +1,7 @@
 package Zad6;
 
+import javafx.scene.image.Image;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,6 +12,7 @@ public class Budynek extends Lokalizacja {
 
     private String nazwa;
     private List <Pietro> pietra = new ArrayList<>();
+    Image img = new Image("Zad6/building.png");
 
     Budynek(int b) {
         this.id.setNrBudynek(b);
@@ -21,6 +24,14 @@ public class Budynek extends Lokalizacja {
         System.out.print("\nBudynek: " + this.id.getNrBudynek() + " \n");
         for(Pietro x : pietra)
             x.opis();
+    }
+
+    public String opisString() {
+        String opispietra="";
+       // System.out.print("\tPietro: "+this.id.getNrPietro()+" \n");
+        for(Pietro x : pietra)
+            opispietra+=x.opisString()+" ";
+        return "\nBudynek: " + this.id.getNrBudynek() + " \n" + opispietra;
     }
 
     public Pietro pie(int a) {
