@@ -9,12 +9,14 @@ import java.util.Scanner;
  * taj
  */
 public class Zad2 {
+
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
         int a=0,b=0;
         String text="";
+        Scanner scanner = new Scanner(System.in);
 
         System.out.println("Podaj tekst:\n");
+
         try {
             text = scanner.nextLine();
             do {
@@ -24,7 +26,7 @@ public class Zad2 {
             } while(a>text.length() || b<a || b > text.length());
 
         } catch (InputMismatchException e) {
-            System.out.println("Blead: " + e);
+            System.out.println("Blad: " + e);
             System.exit(0);
         }
 

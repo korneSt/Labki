@@ -1,4 +1,4 @@
-import java.util.Scanner;
+import java.io.*;
 
 /**
  * Napisz program proszacy o podanie 2 wektorow. Koniec wektora oznacza sie za pomoca wcisniecia klawisza enter.
@@ -12,41 +12,74 @@ public class Zad5 {
 
     public static void main(String[] args){
         System.out.println("Podaj 2 wektory:\n");
+        String w1, w2;
+        boolean czyOK = false;
 
-        Scanner scanner = new Scanner(System.in);
-        String word1, word2;
-
-        word1 = scanner.nextLine();
-        word2 = scanner.nextLine();
-
-        if(isNumeric(word1) && isNumeric(word2)) {
+        while (!czyOK) {
             try {
-                System.out.println(dodajWektory(word1, word2));
-            } catch (WektoryRoznejDlugosciException e) {}
+                czyOK = true;
+                w1 = podajWektor();
+                w2 = podajWektor();
+
+                dodajWektory(w1, w2);
+            } catch (WektoryRoznejDlugosciException e) {
+                System.out.println("\nPodaj wektory ponownie\n");
+                czyOK = false;
+            }
         }
     }
 
-    public static boolean isNumeric(String str) {
-        try {
-            Double.parseDouble(str);
-        } catch(NumberFormatException e) {
-            return false;
-        }
-        return true;
-    }
+    public static long dodajWektory(String w1, String w2) throws WektoryRoznejDlugosciException{
 
-    public static int dodajWektory(String w1, String w2) throws WektoryRoznejDlugosciException {
-        int x=0, z=0;
-        try{
-            x = Integer.parseInt(w1);
-            z = Integer.parseInt(w2);
-        } catch (NumberFormatException e) {
-           e.printStackTrace();
-        }
-        if (w1.length() == w2.length()) {
-            return x+z;
+        int wynik = Integer.parseInt(w1) + Integer.parseInt(w2);
+
+        if(sprawdzDlugosc(w1, w2)) {
+            zapisz(String.valueOf(wynik));
+            return wynik;
         } else {
-            throw new WektoryRoznejDlugosciException();
+            throw new WektoryRoznejDlugosciException(w1.length(), w2.length());
         }
     }
+
+    public static String podajWektor() {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        boolean czyPoprawne = false;
+        String wektor = null;
+
+        while(!czyPoprawne) {
+
+            try {
+                wektor = String.valueOf(Integer.parseInt(reader.readLine()));
+            } catch (NumberFormatException n) {
+                System.out.println("Niepoprawne dane!");
+            } catch (IOException e) {
+                System.out.println("B³¹d odczytu danych");
+            }
+
+            czyPoprawne = wektor != null;
+        }
+        return wektor;
+    }
+
+    public static void zapisz(String s) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("test.txt"))){
+            writer.write(String.valueOf(s));
+            System.out.print("Wynik dodawania zapisano w pliku");
+        }catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public static boolean sprawdzDlugosc(String w1, String w2) {
+        return (w1.length() == w2.length());
+    }
+
+    public static class WektoryRoznejDlugosciException extends Exception {
+
+        public WektoryRoznejDlugosciException(int length, int length1) {
+            System.out.format("Dlugosc pierwszego wektora: %d\nDlugosc drugiego wektora: %d\n", length,length1);
+        }
+    }
+
 }
