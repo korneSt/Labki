@@ -9,40 +9,32 @@ import java.util.List;
  */
 public class Pietro extends Lokalizacja {
 
+    private final int numer;
+    List<Pokoj> pokoje;
 
-    private String opis;
-    private String nazwa;
-    List<Pokoj> pokoje = new ArrayList<>();
-
-
-    public Pietro(int a, int b) {
-        this.id.setNrBudynek(a);
-        this.id.setNrPietro(b);
-        this.id.setNrPokoj(0);
+    public Pietro(int numer) {
+        this.numer = numer;
+        id = new Identyfikator(0, numer, 0);
+        pokoje = new ArrayList<>();
     }
 
+    public void addPokoj(Pokoj pokoj) {
+        pokoj.getID().setNrPietra(id.getNrPietra());
+        pokoj.getID().setNrBudynku(id.getNrBudynku());
 
-    void addPokoj(int a) {
-        pokoje.add(new Pokoj(this.id.getNrBudynek(), this.id.getNrPietro(), a));
+        pokoje.add(pokoj);
     }
 
-    public void opis() {
-        System.out.print("\tPietro: "+this.id.getNrPietro()+" \n");
-        for(Pokoj x : pokoje)
-            x.opis();
+    public List getPokoj() {
+        return pokoje;
     }
 
-    public String opisString() {
-        String opisPokoj="";
-       // System.out.print("\tPietro: "+this.id.getNrPietro()+" \n");
-        for(Pokoj x : pokoje)
-            opisPokoj+=x.opisString()+" ";
-        return "\tPietro: "+this.id.getNrPietro()+" \n" + opisPokoj;
+    public String opis() {
+        String opisPokoj = "";
+
+        for (Pokoj x : pokoje)
+            opisPokoj += x.opis() + " ";
+
+        return "\tPietro: " + numer + " " + id + " \n" + opisPokoj;
     }
-
-    public Pokoj pok(int a) {
-        return this.pokoje.get(a);
-    }
-
-
 }

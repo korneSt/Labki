@@ -10,42 +10,37 @@ import java.util.List;
  */
 public class Budynek extends Lokalizacja {
 
-    private String nazwa;
-    private List <Pietro> pietra = new ArrayList<>();
-    Image img = new Image("Zad6/building.png");
+    private final int numer;
+    private List <Pietro> pietra;
 
-    Budynek(int b) {
-        this.id.setNrBudynek(b);
-        this.id.setNrPietro(0);
-        this.id.setNrPokoj(0);
+    Budynek(int numer) {
+        this.numer = numer;
+        id = new Identyfikator(numer);
+        pietra = new ArrayList<>();
     }
 
-    public void opis() {
-        System.out.print("\nBudynek: " + this.id.getNrBudynek() + " \n");
-        for(Pietro x : pietra)
-            x.opis();
-    }
 
-    public String opisString() {
+    public String opis() {
         String opispietra="";
-       // System.out.print("\tPietro: "+this.id.getNrPietro()+" \n");
+
         for(Pietro x : pietra)
-            opispietra+=x.opisString()+" ";
-        return "\nBudynek: " + this.id.getNrBudynek() + " \n" + opispietra;
+            opispietra+=x.opis()+" ";
+
+        return "\nBudynek: " + numer + " " + id + "\n " + opispietra;
     }
 
-    public Pietro pie(int a) {
-        return this.pietra.get(a);
+    void addPietro(Pietro pietro) {
+        pietro.getID().setNrBudynku(id.getNrBudynku());
+        pietra.add(pietro);
     }
 
-
-    public List<Pietro> getPietro() {
+    public List getPietro() {
         return pietra;
     }
 
 
-    void addPietro(int nr) {
-        Pietro p = new Pietro(this.id.getNrBudynek(), nr);
-        pietra.add(p);
+    @Override
+    public String toString() {
+        return "Budynek " + numer + " ";
     }
 }

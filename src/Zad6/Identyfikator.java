@@ -3,64 +3,76 @@ package Zad6;
 /**
  * Created by Kornel on 2015-05-02.
  *
- * Moim identyfikatorem by³ obiekt typu (int budynek, int piêtro, int pokój). Przyk³adowo dla 2 piêtra 1 budynku - (1,2,0).
- * Potem ³atwo siê porównywa³o, czy to porównywanie dotyczy³o czym jest dany obiekt, czy mo¿e np. lokalizacje dwóch pokoi.
- *
  */
-public class Identyfikator implements Comparable<Identyfikator> {
-    private Integer nrBudynek = 0, nrPietro = 0, nrPokoj = 0;
+public class Identyfikator implements Comparable<Identyfikator>{
 
-    Identyfikator(int nrB, int nrPi, int nrPo) {
-        nrB = nrBudynek;
-        nrPi = nrPietro;
-        nrPo = nrPokoj;
+    private int nrBudynku;
+    private int nrPietra;
+    private int nrPokoju;
+
+
+    public Identyfikator(int nrBudynku, int nrPietra, int nrPokoju) {
+        this.nrBudynku = nrBudynku;
+        this.nrPietra = nrPietra;
+        this.nrPokoju = nrPokoju;
     }
 
-    Identyfikator() {
+    public Identyfikator(int nrBudynku) {
+        this.nrBudynku = nrBudynku;
+    }
+
+    public int getNrBudynku() {
+        return nrBudynku;
+    }
+
+    public void setNrBudynku(int nrBudynku) {
+        this.nrBudynku = nrBudynku;
+    }
+
+    public int getNrPietra() {
+        return nrPietra;
+    }
+
+    public void setNrPietra(int nrPietra) {
+        this.nrPietra = nrPietra;
+    }
+
+    public int getNrPokoju() {
+        return nrPokoju;
+    }
+
+    public void setNrPokoju(int nrPokoju) {
+        this.nrPokoju = nrPokoju;
     }
 
 
-    void setNrBudynek(int nr) {
-        nrBudynek = nr;
-    }
+    @Override
+    public String toString() {
 
-    void setNrPietro(int nr) {
-        nrPietro = nr;
-    }
-
-    void setNrPokoj(int nr) {
-        nrPokoj = nr;
-    }
-
-    int getNrBudynek() {
-        return nrBudynek;
-    }
-
-    int getNrPokoj() {
-        return nrPokoj;
-    }
-
-    int getNrPietro() {
-        return nrPietro;
+        return "Identyfikator [nrBudynku=" + nrBudynku + ", nrPietra=" + nrPietra + ", nrPokoju=" + nrPokoju + "]";
     }
 
     @Override
-    public int compareTo(Identyfikator tempID) throws IndexOutOfBoundsException {
-
-        if (nrBudynek.equals( tempID.nrBudynek))
+    public int compareTo(Identyfikator o) {
+        if (this.nrBudynku<o.nrBudynku) {
+            return -1;
+        }
+        if (this.nrBudynku>o.nrBudynku) {
             return 1;
-        if (nrBudynek < tempID.nrBudynek)
+        }
+        if (this.nrPietra>o.nrPietra) {
+            return 1;
+        }
+        if (this.nrPietra<o.nrPietra) {
             return -1;
-        if (nrBudynek > tempID.nrBudynek)
+        }
+        if (this.nrPokoju>o.nrPokoju) {
+            return 1;
+        }
+        if (this.nrPokoju<o.nrPokoju) {
             return -1;
-        if (nrBudynek < tempID.nrPietro)
-            return -1;
-        if (nrBudynek > tempID.nrPietro)
-            return -1;
-        if (nrBudynek < tempID.nrPokoj)
-            return -1;
-        if (nrBudynek > tempID.nrPokoj)
-            return -1;
+        }
         return 0;
     }
 }
+

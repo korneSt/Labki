@@ -8,30 +8,15 @@ import java.util.List;
  */
 public class Pokoj extends Lokalizacja {
 
-    private String nazwa;
+    private final int numer;
 
-    Pokoj(int a, int b, int c) {
-        this.id.setNrBudynek(a);
-        this.id.setNrPietro(b);
-        this.id.setNrPokoj(c);
-    }
-
-    Pokoj(String nazwa) {
-        this.nazwa = nazwa;
+    public Pokoj(int numer) {
+        this.numer = numer;
+        id = new Identyfikator(0,0,numer);
     }
 
-    public void opis() {
-        System.out.print("\t\tPokoj: "+this.id.getNrPokoj()+" \n");
+    public String opis() {
+        return "\t\tPokoj: "+ numer + " " + id + " \n";
     }
 
-    public String opisString() {
-        return "\t\tPokoj: "+this.id.getNrPokoj()+" \n";
-    }
-    void setPokoj(String nazwa) {
-        this.nazwa = nazwa;
-    }
-
-    void addPokoj(String nazwa) {
-        this.nazwa = nazwa;
-    }
 }
