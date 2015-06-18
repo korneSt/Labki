@@ -13,24 +13,19 @@ public class Zad2 {
     public static void main(String[] args) {
         int a=0,b=0;
         String text="";
-        Scanner scanner = new Scanner(System.in);
-
-        System.out.println("Podaj tekst:\n");
 
         try {
-            text = scanner.nextLine();
-            do {
-                System.out.println("Podaj dwie liczby: \n");
-                a = scanner.nextInt();
-                b = scanner.nextInt();
-            } while(a>text.length() || b<a || b > text.length());
-
-        } catch (InputMismatchException e) {
+            text = args[0];
+            a = Integer.parseInt(args[1]);
+            b = Integer.parseInt(args[2]);
+            if (a>text.length() || b<a || b > text.length()) {
+               throw new IndexOutOfBoundsException();
+           }
+        } catch (NumberFormatException | IndexOutOfBoundsException e) {
             System.out.println("Blad: " + e);
             System.exit(0);
         }
 
-        System.out.println(text.substring(a,b));
-
+        System.out.println(text.substring(a,b+1));
     }
 }
